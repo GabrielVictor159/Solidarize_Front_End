@@ -1,0 +1,11 @@
+@use '../global/global.scss' as global;
+
+
+
+.textAnimation {
+    transition: all 0.5s;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+}
