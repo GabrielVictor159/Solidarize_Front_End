@@ -1,0 +1,28 @@
+@use '../../global/global.scss' as global;
+@use '../../global/globalTexts.scss' as globalTexts;
+
+.background{
+    background: rgba(160, 160, 160, 1.0);
+    background: radial-gradient(at center, rgba(160, 160, 160, 0.3), rgba(95, 101, 100, 0.3));
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login_box{
+        min-width: 60em;
+        height: 40em;
+        background-color: hsl(var(--nextui-background));
+        display: flex;
+        border-radius: 1em;
+        @include global.shadows(0.5em,1em,0.2em,0.1);
+        flex-direction: row;
+        .login_box_division1{
+            display: flex;
+            width: 50%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

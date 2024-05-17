@@ -21,13 +21,15 @@ module.exports = {
       light: {
         colors: {
           background: "#FFFFFF",
-          primary:"#333333"
+          primary:"#333333",
+          normalText:"#202020"
         },
       },
       dark: {
         colors: {
           background: "#202020",
-          primary: "#FF5484"
+          primary: "#FF5484",
+          normalText:"#FFFFFF"
         },
       },
     }
