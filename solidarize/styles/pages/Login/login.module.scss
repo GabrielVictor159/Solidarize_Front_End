@@ -1,7 +1,7 @@
 @use '../../global/global.scss' as global;
 @use '../../global/globalTexts.scss' as globalTexts;
 
-.background{
+.background {
     background: rgba(160, 160, 160, 1.0);
     background: radial-gradient(at center, rgba(160, 160, 160, 0.3), rgba(95, 101, 100, 0.3));
     width: 100%;
@@ -9,20 +9,69 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .login_box{
-        min-width: 60em;
+
+    .login_box {
+        width: 60em;
         height: 40em;
         background-color: hsl(var(--nextui-background));
         display: flex;
         border-radius: 1em;
-        @include global.shadows(0.5em,1em,0.2em,0.1);
+        @include global.shadows(0.5em, 1em, 0.2em, 0.1);
         flex-direction: row;
-        .login_box_division1{
+
+        &_division1 {
             display: flex;
             width: 50%;
             height: 100%;
             justify-content: center;
             align-items: center;
+
+            &_image {
+                border-radius: 100%;
+                width: 20em;
+
+                &_dark {
+                    opacity: 0.7;
+                }
+
+                &_light {
+                    opacity: 1;
+                }
+            }
         }
+
+        &_division2 {
+            display: flex;
+            &_desktop {
+                width: 50%;
+            }
+            &_phone {
+                width: 100%;
+            }
+            height: 100%;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            gap:0.3em;
+            p{
+                @include globalTexts.Paragraph(0.8em);
+            }
+            h1{
+                @include globalTexts.Title(1.4em);
+                color: hsl(var(--nextui-primary));
+            }
+            &_input {
+                overflow: hidden;
+                width: 20em;
+                &_icon {
+                    width: 1em;
+                    filter: global.colorize-image(hsl(var(--nextui-normalText)));
+                }
+            }
+            &_button{
+                width: 20em;
+            }
+        }
+
     }
 }

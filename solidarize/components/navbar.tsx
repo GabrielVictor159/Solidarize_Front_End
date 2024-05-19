@@ -12,11 +12,12 @@ import {
 	NavbarBrand,
 	NavbarItem,
 	NavbarMenuItem,
+	Avatar,
 } from "@nextui-org/react";
 
 import { link as linkStyles } from "@nextui-org/theme";
 
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/Domain/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
 
@@ -32,8 +33,13 @@ import {
 import { Logo } from "@/components/icons";
 
 import styles from "../styles/components/navbar.module.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "@/Provider/Store";
+import { useEffect } from "react";
 
 export const Navbar = () => {
+	const loginResponse = useSelector((state: RootState) => state.loginResponse);
+	
 	const searchInput = (
 		<Input
 			aria-label="Search"
@@ -88,7 +94,10 @@ export const Navbar = () => {
 					<ThemeSwitch />
 				</NavbarItem>
 				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+				{ loginResponse.UserInformation==undefined?
 				<NavbarItem style={{cursor:'pointer'}}><NextLink href="/Login"><img className={styles.icon_register} src="/icons8-register-96.png"/></NextLink></NavbarItem>
+				:<NavbarItem style={{cursor:'pointer'}}><NextLink href="/User/MyProfile"><Avatar src={loginResponse.UserInformation.Icon==undefined||null?"":`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${loginResponse.UserInformation.Icon!.split('.')[0]}`} className="w-6 h-6 text-tiny"/></NextLink></NavbarItem>
+				}
 			</NavbarContent>
 
 		</NextUINavbar>

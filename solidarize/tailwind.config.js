@@ -22,14 +22,16 @@ module.exports = {
         colors: {
           background: "#FFFFFF",
           primary:"#333333",
-          normalText:"#202020"
+          normalText:"#202020",
+          reference:"#FFFFFF"
         },
       },
       dark: {
         colors: {
           background: "#202020",
           primary: "#FF5484",
-          normalText:"#FFFFFF"
+          normalText:"#FFFFFF",
+          reference:"black"
         },
       },
     }

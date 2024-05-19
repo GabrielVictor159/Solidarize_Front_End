@@ -7,10 +7,18 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"syler.sass-indented"
+				"syler.sass-indented",
+				"ms-vscode.vscode-typescript-next",
+				"DSKWRK.vscode-generate-getter-setter"
 			]
 		}
-	}
+	},
+	"remoteEnv": {
+        "BACK_END_URL": "https://3679-191-249-100-86.ngrok-free.app"
+    },
+	"runArgs": [
+        "--network=devcontainer_solidarize"
+    ]
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
