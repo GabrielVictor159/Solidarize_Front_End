@@ -13,9 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/Provider/Store";
 import { setLoginResponse } from "@/Provider/Slices/LoginSlice";
 import { useRouter } from 'next/router';
+import LoginUseCase from "@/Application/UseCases/Login/LoginUseCase";
 
 export default function IndexPage() {
-    // const loginResponse = useSelector((state: RootState) => state.loginResponse);
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     

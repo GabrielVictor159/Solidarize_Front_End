@@ -41,6 +41,9 @@
         }
 
         &_division2 {
+            &_center{
+                justify-content: center;
+            }
             display: flex;
             &_desktop {
                 width: 50%;

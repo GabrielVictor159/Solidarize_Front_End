@@ -1,23 +1,22 @@
-import axios from 'axios';
 import Handler from "@/Application/UseCases/Handlers";
-import LoginRequest from "../LoginRequest";
-import ApiBadResponse from '@/Domain/Model/Api/ApiBadResponse';
+import RequestRecoverPasswordRequest from "../RequestRecoverPasswordRequest";
+import axios from "axios";
+import ApiBadResponse from "@/Domain/Model/Api/ApiBadResponse";
 
-export default class GetTokenHandler extends Handler<LoginRequest> {
+export default class PostRecoverPasswordHandler extends Handler<RequestRecoverPasswordRequest>{
+    public async ProcessRequest(request: RequestRecoverPasswordRequest): Promise<void> {
+        request.AddLog("Process reached RecoverPasswordUseCase PostRecoverPasswordHandler");
 
-    public async ProcessRequest(request: LoginRequest): Promise<void> {
-        request.AddLog("Process reached LoginUseCase GetTokenHandler");
         let BACK_END_URL = process.env.NEXT_PUBLIC_BACK_END_URL;
-        const response = await axios.post(`${BACK_END_URL}/api/Login`, {
-            Email: request.$Email,
-            Password: request.$Password
+        const response = await axios.post(`${BACK_END_URL}/api/RecoverPassword`, {
+            Email: request.$Email
         }, {
             headers: {
                 'Content-Type': 'application/json'
             },
             validateStatus: () => true
         })
-        request.$LoginResponse.$Token = response.data.token;
+        
         if (response.status >= 300 || response.status < 200) {
             if (response.status == 400) {
                 let errors = response.data;
@@ -32,6 +31,7 @@ export default class GetTokenHandler extends Handler<LoginRequest> {
             }
             return;
         }
+        
         if (this.sucessor) {
             await this.sucessor.ProcessRequest(request);
         }

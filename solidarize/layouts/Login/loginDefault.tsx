@@ -9,8 +9,12 @@ import { useSizeProportion } from "@/layouts/sizeProportionProvider";
 
 export default function LoginDefault({
 	children,
+    imageActive = true,
+    center = false,
 }: {
 	children: React.ReactNode;
+    imageActive?:boolean,
+    center?:boolean
 }){
     const { theme, setTheme } = useTheme();
     const { sizeProportion, setSizeProportion } = useSizeProportion();
@@ -21,6 +25,7 @@ export default function LoginDefault({
                     <nav className={styles.background}>
                         <div className={styles.login_box}>
                             {
+                                imageActive?
                                 sizeProportion>1?
                             <div className={styles.login_box_division1}>
                                 <Image
@@ -32,10 +37,13 @@ export default function LoginDefault({
                                 />
                             </div>
                             :<></>
+                            :<></>
                             }
                             <div className={clsx( 
                                 styles.login_box_division2,
-                                sizeProportion>1 ? styles.login_box_division2_desktop : styles.login_box_division2_phone)}>
+                                imageActive==false ? styles.login_box_division2_phone:
+                                sizeProportion>1 ? styles.login_box_division2_desktop : styles.login_box_division2_phone,
+                                center?styles.login_box_division2_center:"")}>
                                 {children}
                             </div>
                         </div>

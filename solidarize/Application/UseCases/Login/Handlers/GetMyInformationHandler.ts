@@ -8,7 +8,7 @@ import User from '@/Domain/Model/Login/User';
 export default class GetMyInformationHandler extends Handler<LoginRequest> {
 
     public async ProcessRequest(request: LoginRequest): Promise<void> {
-        request.AddLog("Process reached GetMyInformationHandler");
+        request.AddLog("Process reached LoginUseCase GetMyInformationHandler");
         let BACK_END_URL = process.env.NEXT_PUBLIC_BACK_END_URL;
         const response = await axios.get(`${BACK_END_URL}/api/GetMyInformation`, {
             headers: {
