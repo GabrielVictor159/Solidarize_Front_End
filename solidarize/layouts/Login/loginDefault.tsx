@@ -11,10 +11,12 @@ export default function LoginDefault({
 	children,
     imageActive = true,
     center = false,
+    top = false,
 }: {
 	children: React.ReactNode;
     imageActive?:boolean,
     center?:boolean
+    top?:boolean
 }){
     const { theme, setTheme } = useTheme();
     const { sizeProportion, setSizeProportion } = useSizeProportion();
@@ -43,7 +45,8 @@ export default function LoginDefault({
                                 styles.login_box_division2,
                                 imageActive==false ? styles.login_box_division2_phone:
                                 sizeProportion>1 ? styles.login_box_division2_desktop : styles.login_box_division2_phone,
-                                center?styles.login_box_division2_center:"")}>
+                                center?styles.login_box_division2_center:"",
+                                top?styles.login_box_division2_top:"")}>
                                 {children}
                             </div>
                         </div>

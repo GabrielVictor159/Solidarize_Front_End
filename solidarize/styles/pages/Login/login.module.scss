@@ -12,7 +12,7 @@
 
     .login_box {
         width: 60em;
-        height: 40em;
+        min-height: 40em;
         background-color: hsl(var(--nextui-background));
         display: flex;
         border-radius: 1em;
@@ -43,6 +43,9 @@
         &_division2 {
             &_center{
                 justify-content: center;
+            }
+            &_top{
+                justify-content: start;
             }
             display: flex;
             &_desktop {
