@@ -78,7 +78,7 @@ export default function IndexPage() {
                 <br />
                 <br />
                 <br />
-                <NextLink href="/Login/register" >
+                <NextLink href="/Register" >
                     <p>Crie a sua conta</p>
                 </NextLink>
                 <br />

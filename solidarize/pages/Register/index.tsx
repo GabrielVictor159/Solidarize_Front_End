@@ -1,20 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Input, Select, SelectItem } from "@nextui-org/react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { LegalNature } from "@/Domain/Enum/LegalNature";
 import { FormatCnpj, FormatPhoneNumber } from "@/Domain/config/formats";
-import { ValidateAddress, ValidateCnpj, ValidateCompanyName, ValidateDescription, ValidatePassword } from "@/Domain/config/validates";
+import { ValidateAddress, ValidateCnpj, ValidateCompanyName, ValidateConfirmPassword, ValidateDescription, ValidateEmail, ValidatePassword, ValidatePhone } from "@/Domain/config/validates";
 import LoginDefault from "@/layouts/Login/loginDefault";
 import stylesLogin from "@/styles/pages/Login/login.module.scss";
 import styles from "@/styles/pages/Register/register.module.scss";
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import { MapEventClick } from "@/Domain/types";
+import SelectMapRegion from "@/components/selectMapRegion";
+import ValidateItens from "@/Domain/Model/Validate/ValidateItens";
+import ValidateItensItem from "@/Domain/Model/Validate/ValidateItensItem";
+import { toast } from "react-toastify";
+import UseCaseFactory from "@/Domain/Factory/UseCaseFactory";
+import { UseCasesEnum } from "@/Domain/Enum/UseCasesEnum";
+import RegisterRequest from "@/Application/UseCases/Register/RegisterRequest";
+import { useRouter } from "next/router";
 
 export default function RegisterIndex() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
 
   const [companyName, setCompanyName] = useState<string>("");
   const [cnpj, setCnpj] = useState<string>("");
@@ -25,7 +28,54 @@ export default function RegisterIndex() {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [legalNature, setLegalNature] = useState<string>("");
+  const [mapEventClick, setMapEventClick] = useState<MapEventClick>();
+  const [validateItens, setValidateItens] = useState<ValidateItens>(new ValidateItens([]));
 
+  
+  useEffect(() => {
+    const updateValidateItens = (newItem: ValidateItensItem) => {
+      setValidateItens(prevState => {
+        const clonedState = new ValidateItens([...prevState.$Items]);
+        clonedState.AddItem(newItem);
+        return clonedState;
+      });
+    };
+    ValidateCompanyName(companyName, updateValidateItens);
+    ValidateCnpj(cnpj, updateValidateItens);
+    ValidateAddress(address, updateValidateItens);
+    ValidatePhone(phone, updateValidateItens);
+    ValidateEmail(email, updateValidateItens);
+    ValidatePassword(password, updateValidateItens);
+    ValidateConfirmPassword(confirmPassword, password, updateValidateItens);
+    ValidateDescription(description, updateValidateItens);
+    updateValidateItens(new ValidateItensItem("mapEventClick",mapEventClick===undefined?false:true,"Por favor selecione um ponto fixo no mapa para a sua empresa"));
+    updateValidateItens(new ValidateItensItem("legalNature",legalNature===undefined?false:true,"Por favor selecione uma natureza legal para a sua empresa"));
+  }, [companyName, cnpj, address, phone, email, password, confirmPassword, description,mapEventClick]);
+
+  let useCase = new UseCaseFactory().Resolve(UseCasesEnum.RegisterCompany);
+  const router = useRouter();
+  const Register = async () => {
+    let invalidItens = validateItens.$Items.filter(e=>e.Valid==false);
+    if(invalidItens.length>0){
+      invalidItens.forEach(e=>{
+        toast.info(e.Message);
+      });
+      return;
+    }
+
+    let request = new RegisterRequest(companyName,description,legalNature,mapEventClick!.region.lat,mapEventClick!.region.lng,cnpj,address,phone,email,password);
+        await useCase?.Execute(request);
+        if (request.ApiBadResponse!=undefined) {
+          request.ApiBadResponse.$Response.forEach((message)=>{
+                toast.info(message);
+            })
+        }
+        else
+        {
+          router.push("/Register/sucess")
+        }
+
+  }
   return (
     <>
       <LoginDefault imageActive={false} top={true}>
@@ -35,14 +85,14 @@ export default function RegisterIndex() {
           <br />
           <br />
           <Input
-            isClearable
+            onClear={() => setCompanyName("")}
             className={stylesLogin.login_box_division2_input}
             isRequired
             type="text"
             label="Nome da empresa"
             placeholder="Nome"
             value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
+            onChange={(e) => { setCompanyName(e.target.value) }}
             validate={ValidateCompanyName}
           />
           <Input
@@ -53,7 +103,7 @@ export default function RegisterIndex() {
             label="CPNJ da empresa"
             placeholder="CNPJ"
             value={FormatCnpj(cnpj)}
-            onChange={(e) => setCnpj(e.target.value)}
+            onChange={(e) => { setCnpj(e.target.value) }}
             validate={ValidateCnpj}
           />
           <Input
@@ -64,7 +114,7 @@ export default function RegisterIndex() {
             label="Endereço da empresa"
             placeholder="Endereço"
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={(e) => { setAddress(e.target.value) }}
             validate={ValidateAddress}
           />
           <Input
@@ -75,8 +125,8 @@ export default function RegisterIndex() {
             label="Telefone da empresa"
             placeholder="Telefone"
             value={FormatPhoneNumber(phone)}
-            onChange={(e) => setPhone(e.target.value)}
-            validate={ValidateAddress}
+            onChange={(e) => { setPhone(e.target.value) }}
+            validate={ValidatePhone}
           />
           <Input
             onClear={() => setEmail("")}
@@ -86,7 +136,7 @@ export default function RegisterIndex() {
             label="Email da empresa"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value) }}
           />
           <Input
             onClear={() => setPassword("")}
@@ -96,7 +146,7 @@ export default function RegisterIndex() {
             label="Senha"
             placeholder="Senha"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => { setPassword(e.target.value) }}
             validate={ValidatePassword}
           />
           <Input
@@ -107,7 +157,7 @@ export default function RegisterIndex() {
             label="Confirmar a senha"
             placeholder="Confirmar a Senha"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => { setConfirmPassword(e.target.value) }}
             isInvalid={confirmPassword !== password}
           />
           <Input
@@ -118,7 +168,7 @@ export default function RegisterIndex() {
             label="Descrição da empresa"
             placeholder="Descrição da empresa"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => { setDescription(e.target.value) }}
             validate={ValidateDescription}
           />
           <Select
@@ -133,17 +183,16 @@ export default function RegisterIndex() {
               </SelectItem>
             ))}
           </Select>
-          {isClient && (
-            <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY!}>
-              <Map
-                className={styles.Map}
-                defaultCenter={{ lat: 22.54992, lng: 0 }}
-                defaultZoom={3}
-                gestureHandling={'greedy'}
-                disableDefaultUI={true}
-              />
-            </APIProvider>
-          )}
+          <br />
+          <p className={styles.paragraph}>
+            Por favor selecione uma localização fisica para o seu negocio
+          </p>
+          <SelectMapRegion className={styles.Map} callbackSelectRegion={setMapEventClick} />
+          <br />
+          <Button onClick={Register} className={styles.button_login} isIconOnly color="danger" variant="solid">
+            Registrar
+          </Button>
+          <br />
         </>
       </LoginDefault>
     </>

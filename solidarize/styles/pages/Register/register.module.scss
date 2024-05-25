@@ -5,3 +5,10 @@
     width: 30em;
     height: 20em;
 }
+.button_login{
+    width: 10em;
+}
+.Paragraph{
+    @include globalTexts.Paragraph(2em);
+    text-align: center;
+}

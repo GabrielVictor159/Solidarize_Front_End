@@ -15,11 +15,7 @@ export const siteConfig = {
     {
       label: "Registre",
       href: "/about",
-    },
-	{
-		label: "Faq",
-		href: "/about",
-	  }
+    }
 	],
 	navMenuItems: [
 		{

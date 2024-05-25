@@ -45,8 +45,8 @@ export default function LoginDefault({
                                 styles.login_box_division2,
                                 imageActive==false ? styles.login_box_division2_phone:
                                 sizeProportion>1 ? styles.login_box_division2_desktop : styles.login_box_division2_phone,
-                                center?styles.login_box_division2_center:"",
-                                top?styles.login_box_division2_top:"")}>
+                                center===true?styles.login_box_division2_center:"",
+                                top===true?styles.login_box_division2_top:"")}>
                                 {children}
                             </div>
                         </div>

@@ -9,7 +9,9 @@
 			"extensions": [
 				"syler.sass-indented",
 				"ms-vscode.vscode-typescript-next",
-				"DSKWRK.vscode-generate-getter-setter"
+				"DSKWRK.vscode-generate-getter-setter",
+				"TabNine.tabnine-vscode",
+				"loiane.ts-extension-pack"
 			]
 		}
 	},
