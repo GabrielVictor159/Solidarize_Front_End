@@ -9,6 +9,8 @@ import ConfirmRecoverPasswordUseCase from "@/Application/UseCases/ConfirmRecover
 import PostNewPasswordHandler from "@/Application/UseCases/ConfirmRecoverPassword/Handlers/PostNewPasswordHandler";
 import PostRegisterCompanyHandler from "@/Application/UseCases/Register/Handlers/PostRegisterCompanyHandler";
 import RegisterUseCase from "@/Application/UseCases/Register/RegisterUseCase";
+import ConfirmRegisterUseCase from "@/Application/UseCases/ConfirmRegister/ConfirmRegisterUseCase";
+import PostConfirmRegisterHandler from "@/Application/UseCases/ConfirmRegister/Handlers/PostConfirmRegisterHandler";
 
 export default class UseCaseFactory{
     public Resolve(useCase: UseCasesEnum) : any{
@@ -24,6 +26,9 @@ export default class UseCaseFactory{
             }
             case UseCasesEnum.RegisterCompany:{
                 return new RegisterUseCase(new PostRegisterCompanyHandler());
+            }
+            case UseCasesEnum.ConfirmRegisterCompany:{
+                return new ConfirmRegisterUseCase(new PostConfirmRegisterHandler());
             }
             default:{
                 return undefined;

@@ -5,7 +5,7 @@ interface ILoginResponse
     Token?: string;
     UserInformation?: {
     CompanyName?:string;
-    Images?: string[];
+    Images?: string[] | null;
     Icon?:string;
     Description?:string;
     LegalNature?:string;
