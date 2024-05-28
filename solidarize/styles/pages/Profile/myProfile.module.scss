@@ -1,0 +1,34 @@
+@use "../../global/global.scss" as global;
+@use "../../global/globalTexts.scss" as globalTexts;
+
+.Image_View_Container {
+  width: 15em;
+  height: 15em;
+  border-radius: 100%;
+  @include global.shadows(0.5em, 1em, 0.2em, 0.1);
+  transition: all 2s;
+  opacity: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &_background{
+    width: 100%;
+    height: 100%;
+    background-color: hsl(var(--nextui-backgroundImages));
+  }
+  &:hover {
+    background-image: url("/2803242.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    cursor: pointer; 
+    div{
+        opacity: 0.3;
+    }
+    img{
+        opacity: 0.3;
+    }
+  }
+}

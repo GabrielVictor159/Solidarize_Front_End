@@ -23,7 +23,7 @@ module.exports = {
           background: "#FFFFFF",
           primary:"#333333",
           normalText:"#202020",
-          reference:"#FFFFFF"
+          backgroundImages:"#3B3B3B"
         },
       },
       dark: {
@@ -31,7 +31,7 @@ module.exports = {
           background: "#202020",
           primary: "#FF5484",
           normalText:"#FFFFFF",
-          reference:"black"
+          backgroundImages:"#ECECEC"
         },
       },
     }

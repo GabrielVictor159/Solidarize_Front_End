@@ -96,7 +96,7 @@ export const Navbar = () => {
 				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				{ loginResponse.UserInformation==undefined?
 				<NavbarItem style={{cursor:'pointer'}}><NextLink href="/Login"><img className={styles.icon_register} src="/icons8-register-96.png"/></NextLink></NavbarItem>
-				:<NavbarItem style={{cursor:'pointer'}}><NextLink href="/User/MyProfile"><Avatar src={loginResponse.UserInformation.Icon==undefined||null?"":`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${loginResponse.UserInformation.Icon!.split('.')[0]}`} className="w-6 h-6 text-tiny"/></NextLink></NavbarItem>
+				:<NavbarItem style={{cursor:'pointer'}}><NextLink href="/Profile/myProfile"><Avatar src={loginResponse.UserInformation.Icon==undefined||null?"":`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${loginResponse.UserInformation.Icon!.split('.')[0]}`} className="w-6 h-6 text-tiny"/></NextLink></NavbarItem>
 				}
 			</NavbarContent>
 
