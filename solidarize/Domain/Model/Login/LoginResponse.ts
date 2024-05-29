@@ -52,6 +52,7 @@ export default class LoginResponse {
             Address: this.$UserInformation.$Address,
             Email: this.$UserInformation.$Email,
             Id: this.$UserInformation.$Id,
+            Telefone: this.$UserInformation.$Telefone
           } : undefined
         };
       }

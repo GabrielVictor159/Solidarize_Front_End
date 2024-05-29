@@ -12,6 +12,7 @@ export default class User{
     private Address?:string;
     private Email?:string;
     private Id?:string;
+    private Telefone?:string;
     
     constructor(data:any)
     {
@@ -27,6 +28,14 @@ export default class User{
         this.$Address = data.Address;
         this.$Email = data.Email;
         this.$Id = data.Id; 
+        this.$Telefone=data.Telefone
+    }
+    /**
+     * Getter $Telefone
+     * @return {string | undefined}
+     */
+    public get $Telefone(): string | undefined {
+        return this.Telefone;
     }
      /**
      * Getter $CompanyName
@@ -123,7 +132,13 @@ export default class User{
     public get $Id(): string | undefined {
         return this.Id;
     }
-
+    /**
+     * Setter $Telefone
+     * @param {string | undefined} value
+     */
+    public set $Telefone(value: string | undefined) {
+        this.Telefone = value;
+    }
     /**
      * Setter $CompanyName
      * @param {string | undefined} value

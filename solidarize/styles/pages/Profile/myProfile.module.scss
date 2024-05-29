@@ -39,7 +39,13 @@
     }
   }
 }
-
+.Map{
+  width: 30em;
+  height: 20em;
+}
+.button{
+  width: 12em;
+}
 .Images_View {
   width: 80%;
   min-height: 10em;
@@ -48,7 +54,7 @@
   justify-content: center;
   align-items: center;
   gap: 2em;
-
+  flex-wrap: wrap;
   &_ImagesContainer {
     $width: 10em;
     $height: 10em;

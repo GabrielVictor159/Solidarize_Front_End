@@ -13,6 +13,7 @@ interface ILoginResponse
     LocationY?:string;
     LastAcessDate?:Date;
     CNPJ?:string;
+    Telefone?:string;
     Address?:string;
     Email?:string;
     Id?:string;
