@@ -19,7 +19,7 @@ interface ILoginResponse
     Id?:string;
     };
 }
-const initialState: ILoginResponse = {
+const initialState: ILoginResponse =  {
     Token: undefined,
     UserInformation: undefined,
   };
@@ -29,6 +29,7 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
       setLoginResponse: (state, action: PayloadAction<ILoginResponse>) => {
+        sessionStorage.setItem("loginResponse", JSON.stringify(action.payload));
         return action.payload;
       },
     },

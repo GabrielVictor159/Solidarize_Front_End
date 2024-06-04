@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { LegalNature } from "@/Domain/Enum/LegalNature";
 import { FormatCnpj, FormatPhoneNumber } from "@/Domain/config/formats";
 import { ValidateAddress, ValidateCnpj, ValidateCompanyName, ValidateConfirmPassword, ValidateDescription, ValidateEmail, ValidatePassword, ValidatePhone } from "@/Domain/config/validates";
@@ -16,6 +16,7 @@ import UseCaseFactory from "@/Domain/Factory/UseCaseFactory";
 import { UseCasesEnum } from "@/Domain/Enum/UseCasesEnum";
 import RegisterRequest from "@/Application/UseCases/Register/RegisterRequest";
 import { useRouter } from "next/router";
+import clsx from "clsx";
 
 export default function RegisterIndex() {
 
@@ -91,6 +92,8 @@ export default function RegisterIndex() {
             type="text"
             label="Nome da empresa"
             placeholder="Nome"
+            readOnly
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={companyName}
             onChange={(e) => { setCompanyName(e.target.value) }}
             validate={ValidateCompanyName}
@@ -102,17 +105,26 @@ export default function RegisterIndex() {
             type="text"
             label="CPNJ da empresa"
             placeholder="CNPJ"
+            readOnly
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={FormatCnpj(cnpj)}
             onChange={(e) => { setCnpj(e.target.value) }}
             validate={ValidateCnpj}
           />
-          <Input
+          <Textarea
             onClear={() => setAddress("")}
-            className={stylesLogin.login_box_division2_input}
             isRequired
             type="text"
             label="Endereço da empresa"
             placeholder="Endereço"
+            readOnly
+            disableAnimation
+            disableAutosize
+            classNames={{
+              base: clsx(stylesLogin.login_box_division2_input,stylesLogin.login_box_division2_textarea,"max-w-xs"),
+              input: clsx(stylesLogin.login_box_division2_textarea,"resize-y min-h-[40px]"),
+            }}
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={address}
             onChange={(e) => { setAddress(e.target.value) }}
             validate={ValidateAddress}
@@ -124,6 +136,8 @@ export default function RegisterIndex() {
             type="tel"
             label="Telefone da empresa"
             placeholder="Telefone"
+            readOnly
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={FormatPhoneNumber(phone)}
             onChange={(e) => { setPhone(e.target.value) }}
             validate={ValidatePhone}
@@ -135,6 +149,8 @@ export default function RegisterIndex() {
             type="email"
             label="Email da empresa"
             placeholder="Email"
+            readOnly
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={email}
             onChange={(e) => { setEmail(e.target.value) }}
           />
@@ -145,6 +161,8 @@ export default function RegisterIndex() {
             type="password"
             label="Senha"
             placeholder="Senha"
+            readOnly
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={password}
             onChange={(e) => { setPassword(e.target.value) }}
             validate={ValidatePassword}
@@ -156,17 +174,26 @@ export default function RegisterIndex() {
             type="password"
             label="Confirmar a senha"
             placeholder="Confirmar a Senha"
+            readOnly
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={confirmPassword}
             onChange={(e) => { setConfirmPassword(e.target.value) }}
             isInvalid={confirmPassword !== password}
           />
-          <Input
+          <Textarea
             onClear={() => setDescription("")}
-            className={stylesLogin.login_box_division2_input}
             isRequired
             type="text"
             label="Descrição da empresa"
             placeholder="Descrição da empresa"
+            readOnly
+            disableAnimation
+            disableAutosize
+            classNames={{
+              base: clsx(stylesLogin.login_box_division2_input,"max-w-xs"),
+              input: "resize-y min-h-[20px]",
+            }}
+            onFocus={(e) => e.target.removeAttribute('readOnly')}
             value={description}
             onChange={(e) => { setDescription(e.target.value) }}
             validate={ValidateDescription}

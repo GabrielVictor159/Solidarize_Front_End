@@ -11,6 +11,11 @@ import PostRegisterCompanyHandler from "@/Application/UseCases/Register/Handlers
 import RegisterUseCase from "@/Application/UseCases/Register/RegisterUseCase";
 import ConfirmRegisterUseCase from "@/Application/UseCases/ConfirmRegister/ConfirmRegisterUseCase";
 import PostConfirmRegisterHandler from "@/Application/UseCases/ConfirmRegister/Handlers/PostConfirmRegisterHandler";
+import PatchCompanyUseCase from "@/Application/UseCases/PatchCompany/PatchCompanyUseCase";
+import PatchCompanyHandler from "@/Application/UseCases/PatchCompany/Handlers/PatchCompanyHandler";
+import GetMyInformationHandlerPathCompany from "@/Application/UseCases/PatchCompany/Handlers/GetMyInformationHandler";
+import GetProfileUseCase from "@/Application/UseCases/GetProfile/GetProfileUseCase";
+import GetProfileHandler from "@/Application/UseCases/GetProfile/Handlers/GetProfileHandler";
 
 export default class UseCaseFactory{
     public Resolve(useCase: UseCasesEnum) : any{
@@ -29,6 +34,12 @@ export default class UseCaseFactory{
             }
             case UseCasesEnum.ConfirmRegisterCompany:{
                 return new ConfirmRegisterUseCase(new PostConfirmRegisterHandler());
+            }
+            case UseCasesEnum.PatchCompany:{
+                return new PatchCompanyUseCase(new PatchCompanyHandler(), new GetMyInformationHandlerPathCompany());
+            }
+            case UseCasesEnum.GetProfile:{
+                return new GetProfileUseCase(new GetProfileHandler());
             }
             default:{
                 return undefined;

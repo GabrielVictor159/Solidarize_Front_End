@@ -3,6 +3,8 @@ export enum UseCasesEnum{
     RequestRecoverPasswordUseCase= "RequestRecoverPasswordUseCase",
     ConfirmRecoverPasswordUseCase="ConfirmRecoverPasswordUseCase",
     RegisterCompany= "RegisterCompany",
-    ConfirmRegisterCompany="ConfirmRegisterCompany"
+    ConfirmRegisterCompany="ConfirmRegisterCompany",
+    PatchCompany="PatchCompany",
+    GetProfile="GetProfile"
     
 }

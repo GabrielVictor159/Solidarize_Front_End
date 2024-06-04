@@ -25,7 +25,6 @@ export default function ConfirmRegister() {
   },[id]);
 
   const confirmRegister = async() => {
-    console.log(id);
     let request = new ConfirmRegisterRequest(id?.toString()??"");
     await useCase?.Execute(request);
     if (request.ApiBadResponse!=undefined) {

@@ -10,13 +10,15 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { store } from "@/Provider/Store";
+import SessionStorageProvider from "@/Provider/sessionStorageProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-
+  	const router = useRouter();
+	
 	return (
 		<>
 		<Provider store={store}>
+		<SessionStorageProvider>
 		<SizeProportionProvider>
 			<NextUIProvider navigate={router.push}>
 			<NextThemesProvider>
@@ -24,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			</NextThemesProvider>
 		</NextUIProvider>
 		</SizeProportionProvider>
+		</SessionStorageProvider>
 		<ToastContainer />
 		</Provider>
 		</>
