@@ -37,9 +37,11 @@ export default function Profile() {
     <>
       <LoginDefault imageActive={false} center={true}>
         <>
+        <br/>
           {userInformation && (
             <ProfileInformations userInformation={userInformation} />
           )}
+          <br/>
         </>
       </LoginDefault>
     </>

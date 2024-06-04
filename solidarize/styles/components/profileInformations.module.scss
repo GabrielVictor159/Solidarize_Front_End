@@ -1,3 +1,50 @@
-.Image_Modal{
-    width:10000px !important;
+@use "../global/global.scss" as global;
+@use "../global/globalTexts.scss" as globalTexts;
+@use "../pages/Profile/myProfile.module.scss" as profile;
+
+.Image_Icon{
+    border-radius: 100%;
+    @include global.shadows(0.5em, 1em, 0.2em, 0.1);
+    cursor: pointer;
+    filter: saturate(1);
+    transition: all 2s;
+    transform: translateY(0);
+    &:hover{
+        filter: saturate(0);
+        transform: translateY(-0.3em);
+    }
+}
+
+.Images{
+    width: 17em;
+    object-fit: cover;
+    border-radius: 03%;
+    @include global.shadows(0.5em, 1em, 0.2em, 0.1);
+    cursor: pointer;
+    filter: saturate(1);
+    transition: all 2s;
+    transform: translateY(0);
+    &:hover{
+        filter: saturate(0);
+        transform: translateY(-0.3em);
+    }
+}
+
+.Images_Container{
+    width: 100%;
+    min-height: 10em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.Title_Itens{
+    font-size: 1.5em !important;
+}
+
+.Text_Itens{
+    font-size: 1.1em !important;
 }
