@@ -1,0 +1,32 @@
+@use "../../global/global.scss" as global;
+@use "../../global/globalTexts.scss" as globalTexts;
+
+.section1 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-height: 50em !important;
+  .Container_Map {
+    width: 60em !important;
+    height: 35em;
+    background-color: hsl(var(--nextui-background));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:3px solid hsl(var(--nextui-primary));
+    @include global.shadows(1em, 1em, 0.1em, 0.2);
+    .Map{
+        width: 100%;
+        height: 100%;
+      }
+    
+  }
+  
+}
+.section3{
+    background: rgba(160, 160, 160, 1.0);
+    background: radial-gradient(at center, rgba(160, 160, 160, 0.3), rgba(95, 101, 100, 0.3));
+    height: 4em !important;
+}

@@ -48,9 +48,7 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
         <Image
           alt="Imagem do Usuario"
           className={clsx(styles.Icon_View_Container_Image, styles.Image_Icon)}
-          src={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
-            userInformation.$Icon!.split(".")[0]
-          }`}
+          src={`/api/comprimir-imagem?url=${encodeURIComponent(process.env.NEXT_PUBLIC_CONTAINER_IMAGE + userInformation.$Icon!.split(".")[0])}`}
         />
       </a>
       <br />
@@ -77,9 +75,9 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
                     styles.Icon_View_Container_Image,
                     styles.Images
                   )}
-                  src={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
+                  src={`/api/comprimir-imagem?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
                     e!.split(".")[0]
-                  }`}
+                  }`)}`}
                 />
               </a>
             </>
@@ -140,3 +138,4 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
 };
 
 export default ProfileInformations;
+

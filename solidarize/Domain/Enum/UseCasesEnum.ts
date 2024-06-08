@@ -5,6 +5,7 @@ export enum UseCasesEnum{
     RegisterCompany= "RegisterCompany",
     ConfirmRegisterCompany="ConfirmRegisterCompany",
     PatchCompany="PatchCompany",
-    GetProfile="GetProfile"
+    GetProfile="GetProfile",
+    GetOngs="GetOngs"
     
 }

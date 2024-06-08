@@ -2,16 +2,16 @@
 @use '../global/globalTexts.scss' as globalTexts;
 
 .section1 {
-    background: rgba(160, 160, 160, 1.0);
-    background: radial-gradient(at center, rgba(160, 160, 160, 0.3), rgba(95, 101, 100, 0.3));
-    height: 35em;
+    background: rgb(0, 0, 0);
+    background: radial-gradient(at center, rgba(160, 160, 160, 0.4), rgba(95, 101, 100, 0.4));
+    min-height: 35em;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 5em;
-    div{
+    &_containerText{
         width: 400px;
         h1{
             color: hsl(var(--nextui-primary));
@@ -22,6 +22,8 @@
         }
     }
     .section1_image{
+        width: 35em;
+        height: 25em;
         object-fit:cover;
         border-radius: 15px !important;
         @include global.shadows(0.6em,0.6em,0.1em,0.2);
@@ -45,7 +47,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    div{
+    &_subcontainer{
         padding: 1em;
         gap: 2em;
         display: flex;

@@ -277,7 +277,7 @@ export default function MyProfile() {
                   <Image
                     alt="Imagem do Usuario"
                     className={styles.Images_View_ImagesContainer_Images}
-                    src={image}
+                    src={`/api/comprimir-imagem?url=${encodeURIComponent(image)}`}
                   />
                 </div>
               ))}

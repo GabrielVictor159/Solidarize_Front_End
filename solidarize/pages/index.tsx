@@ -12,7 +12,7 @@ export default function IndexPage() {
 			<DefaultLayout>
 				<>
 					<nav className={styles.section1}>
-						<div>
+						<div className={styles.section1_containerText}>
 							<h1 >Solidarize</h1>
 							<p>Nossa plataforma oferece um ambiente acolhedor para a sua doação</p>
 						</div>
@@ -20,7 +20,7 @@ export default function IndexPage() {
 							isZoomed
 							className={styles.section1_image}
 							alt="Imagem Doação"
-							src="/joel-muniz-A4Ax1ApccfA-unsplash.jpg"
+							src={"/joel-muniz-A4Ax1ApccfA-unsplash.jpg"}
 						/>
 					</nav>
 					<nav className={styles.section2}>
@@ -28,14 +28,14 @@ export default function IndexPage() {
 							Encontre Organizações Para As Suas Doações
 						</h1>
 						<br />
-						<div>
+						<div className={styles.section2_subcontainer}>
 							<p>
 								Nossa plataforma possui um sistema de geolocalização para auxiliar você
 							</p>
 							<Image
 								isZoomed
 								className={styles.section2_image}
-								alt="Imagem Google Map"
+								alt="Imagem Google "
 								src="/hand-tapping-tablet-with-map.jpg"
 							/>
 						</div>
@@ -54,19 +54,19 @@ export default function IndexPage() {
 						<Image
 								isZoomed
 								className={styles.section3_image}
-								alt="Imagem Google Map"
+								alt="Imagem Google "
 								src="/4851429.jpg"
 							/>
 						<Image
 								isZoomed
 								className={styles.section3_image}
-								alt="Imagem Google Map"
+								alt="Imagem Google "
 								src="/Checklist.jpg"
 							/>
 						<Image
 								isZoomed
 								className={styles.section3_image}
-								alt="Imagem Google Map"
+								alt="Imagem Google "
 								src="/4669613.jpg"
 							/>
 						</div>

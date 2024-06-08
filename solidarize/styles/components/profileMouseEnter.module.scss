@@ -1,0 +1,32 @@
+@use "../global/global.scss" as global;
+@use "../global/globalTexts.scss" as globalTexts;
+
+.Container{
+    width: 15em;
+    min-height: 20em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: hsl(var(--nextui-background));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5%;
+    @include global.shadows(1em, 1em, 0.1em, 0.2);
+    .Icon{
+        width: 5em;
+        height: 5em;
+        border-radius: 100%;
+        object-fit: cover;
+        @include global.shadows(0.3em, 0.3em, 0.1em, 0.2);
+    }
+    h1{
+        width: 70%;
+        color: hsl(var(--nextui-primary));
+    }
+    p{
+        width: 70%;
+    }
+}

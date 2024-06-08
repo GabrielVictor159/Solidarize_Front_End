@@ -1,3 +1,5 @@
+
+
 export function RegionGeographyLimit(latitude:number, longitude:number):boolean{
     const limiteNorte = 5;
     const limiteSul = -34;
@@ -33,5 +35,6 @@ export function compareArrays<T>(array1: T[], array2: T[]): boolean {
   return array1.length === array2.length && array1.every((value, index) => value === array2[index]);
 }
   
-
-  
+export function TruncateText( text:string, maxLength:number ) {
+  return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+}

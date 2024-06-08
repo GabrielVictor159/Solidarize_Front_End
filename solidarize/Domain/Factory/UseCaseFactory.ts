@@ -16,6 +16,8 @@ import PatchCompanyHandler from "@/Application/UseCases/PatchCompany/Handlers/Pa
 import GetMyInformationHandlerPathCompany from "@/Application/UseCases/PatchCompany/Handlers/GetMyInformationHandler";
 import GetProfileUseCase from "@/Application/UseCases/GetProfile/GetProfileUseCase";
 import GetProfileHandler from "@/Application/UseCases/GetProfile/Handlers/GetProfileHandler";
+import GetOngsUseCase from "@/Application/UseCases/GetOngs/GetOngsUseCase";
+import GetOngsHandler from "@/Application/UseCases/GetOngs/Handlers/GetOngsHandler";
 
 export default class UseCaseFactory{
     public Resolve(useCase: UseCasesEnum) : any{
@@ -40,6 +42,9 @@ export default class UseCaseFactory{
             }
             case UseCasesEnum.GetProfile:{
                 return new GetProfileUseCase(new GetProfileHandler());
+            }
+            case UseCasesEnum.GetOngs:{
+                return new GetOngsUseCase(new GetOngsHandler());
             }
             default:{
                 return undefined;

@@ -1,12 +1,15 @@
 import GetProfileRequest from "@/Application/UseCases/GetProfile/GetProfileRequest";
+import { HeartFilledIcon } from "@/components/icons";
 import ProfileInformations from "@/components/profileInformations";
 import { UseCasesEnum } from "@/Domain/Enum/UseCasesEnum";
 import UseCaseFactory from "@/Domain/Factory/UseCaseFactory";
 import User from "@/Domain/Model/Login/User";
 import LoginDefault from "@/layouts/Login/loginDefault";
+import { Button } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import stylesHome from "@/styles/pages/index.module.scss";
 
 export default function Profile() {
   const router = useRouter();
@@ -40,7 +43,17 @@ export default function Profile() {
         <br/>
           {userInformation && (
             <ProfileInformations userInformation={userInformation} />
+            
           )}
+          <Button
+                className={stylesHome.section2_button}
+                isIconOnly
+                color="danger"
+                variant="solid"
+              >
+                <HeartFilledIcon size={25} />
+                Registrar Doação
+              </Button>
           <br/>
         </>
       </LoginDefault>

@@ -5,28 +5,36 @@ import { useContext, useEffect, useState } from "react";
 import { SizeProportionProvider } from "./sizeProportionProvider";
 
 export default function DefaultLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-			<div className="relative flex flex-col h-screen">
-			<Head />
-			<Navbar />
-			<main >
-				{children}
-			</main>
-			<footer className="w-full flex items-center justify-center py-3">
-				<Link
-					isExternal
-					className="flex items-center gap-1 text-current"
-					href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
-					title="nextui.org homepage"
-				>
-					<span className="text-default-600">Powered by</span>
-					<p className="text-primary">NextUI</p>
-				</Link>
-			</footer>
-		</div>
-	);
+  return (
+    <div className="relative flex flex-col h-screen">
+      <Head />
+      <Navbar />
+      <main>{children}</main>
+      <footer className="w-full flex flex-col items-center  justify-center py-3">
+		<br/>
+        <div className="text-center mb-3">
+          <p>Conectando ONGs e empresas para um futuro mais solidário.</p>
+          <p>Facilitamos doações para causas que importam.</p>
+        </div>
+		<br/>
+        <div className="text-default-600 mb-3">
+          © {new Date().getFullYear()} Solidarize. Todos os direitos
+          reservados.
+        </div>
+        <Link
+          isExternal
+          className="flex items-center gap-1 text-current"
+          href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
+          title="nextui.org homepage"
+        >
+          <span className="text-default-600">Powered by</span>
+          <p className="text-primary">Gabriel</p>
+        </Link>
+      </footer>
+    </div>
+  );
 }
