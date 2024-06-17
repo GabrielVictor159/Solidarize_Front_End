@@ -1,3 +1,7 @@
+import { setLoginResponse } from '@/Provider/Slices/LoginSlice';
+import { AppDispatch } from '@/Provider/Store';
+import { NextRouter } from 'next/router';
+import { Dispatch } from 'react';
 
 
 export function RegionGeographyLimit(latitude:number, longitude:number):boolean{
@@ -37,4 +41,27 @@ export function compareArrays<T>(array1: T[], array2: T[]): boolean {
   
 export function TruncateText( text:string, maxLength:number ) {
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+}
+
+export function Sair(Dispatch: AppDispatch, router: NextRouter){
+  Dispatch(
+    setLoginResponse({
+      Token: undefined,
+      UserInformation: undefined,
+    })
+  );
+  router.push("/");
+}
+
+export function brtFormatter(dateString:string) {
+  const date = new Date(dateString);
+  const formatter = new Intl.DateTimeFormat('pt-BR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'America/Sao_Paulo'
+  });
+  return formatter.format(date);
 }

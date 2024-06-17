@@ -1,0 +1,53 @@
+@use "../global/global.scss" as global;
+@use "../global/globalTexts.scss" as globalTexts;
+
+.MessageLine{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    .IconUser{
+        width: 3.5em;
+        object-fit: cover;
+        border-radius: 100%;
+        @include global.shadows(0.2em, 0.2em, 0em, 0.3);
+    }
+    .divisionTextMessage{
+        padding: 1em;
+        width: 30em;
+        background-color: hsl(var(--nextui-background));
+        border-radius: 10px;
+        @include global.shadows(0.4em, 0.4em, 0em, 0.3);
+    }
+    .divisionAttachedFiles{
+        width: 100%;
+        border-top: 1px solid hsl(var(--nextui-primary));
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        padding: 2%;
+        .attachedFileImage{
+            width: 2em;
+            object-fit: cover;
+            border-radius: 30% !important;
+            cursor: pointer;
+            transition: all 0.5s;
+            transform: translateY(0);
+            &:hover{
+                transform: translateY(-3px);
+            }
+        }
+    }
+    .divisionDate{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        p{
+            font-size: 0.7em;
+        }
+    }
+}

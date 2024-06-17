@@ -13,8 +13,8 @@ export const siteConfig = {
       href: "/Ongs",
     },
     {
-      label: "Registre",
-      href: "/about",
+      label: "Doações",
+      href: "/Donations",
     }
 	],
 	navMenuItems: [

@@ -73,7 +73,7 @@ export default function IndexPage() {
 						<br/>
 						<Button className={styles.section3_button} isIconOnly color="danger"  variant="solid">
 							<img className={styles.section3_button_icon} src="/icons8-signing-a-document-100.png"/>
-        					Registrar
+        					Registrar doação
       					</Button>  
 					</nav>
 				</>

@@ -1,0 +1,31 @@
+@use "../../global/global.scss" as global;
+@use "../../global/globalTexts.scss" as globalTexts;
+
+.division1 {
+  background: rgba(160, 160, 160, 1);
+  background: radial-gradient(
+    at center,
+    rgba(160, 160, 160, 0.3),
+    rgba(95, 101, 100, 0.3)
+  );
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10em;
+  padding-bottom: 10em;
+  .container {
+    border-radius: 1%;
+    @include global.shadows(0.5em, 1em, 0.2em, 0.1);
+    width: 60em;
+    min-height: 80vh;
+    background-color: hsl(var(--nextui-background));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 2em;
+    padding-top: 2em;
+  }
+}

@@ -23,7 +23,9 @@ module.exports = {
           background: "#FFFFFF",
           primary:"#333333",
           normalText:"#202020",
-          backgroundImages:"#3B3B3B"
+          backgroundImages:"#3B3B3B",
+          inputs:"#EBEBEB",
+          backgroundMessage:"#d1d1d1"
         },
       },
       dark: {
@@ -31,7 +33,9 @@ module.exports = {
           background: "#202020",
           primary: "#FF5484",
           normalText:"#FFFFFF",
-          backgroundImages:"#ECECEC"
+          backgroundImages:"#ECECEC",
+          inputs:"#585858",
+          backgroundMessage:"#7D7D7D"
         },
       },
     }

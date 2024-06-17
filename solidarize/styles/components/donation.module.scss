@@ -1,0 +1,36 @@
+@use "../global/global.scss" as global;
+@use "../global/globalTexts.scss" as globalTexts;
+
+.container {
+  width: 100%;
+  min-height: 1em;
+  border-bottom: 1px solid hsl(var(--nextui-primary));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2em;
+  .subContainer {
+    width: 100%;
+    min-height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    .icon {
+      width: 7em;
+      height: 7em;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+    h1 {
+      @include globalTexts.Title(1.4em);
+      color: hsl(var(--nextui-primary));
+    }
+    padding: 1em;
+  }
+  .button {
+    width: 10em;
+    
+  }
+}

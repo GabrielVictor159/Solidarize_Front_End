@@ -1,0 +1,40 @@
+@use "../../../global/global.scss" as global;
+@use "../../../global/globalTexts.scss" as globalTexts;
+
+.container{
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center;
+    padding-top: 0em !important;
+    min-height: 60vh !important;
+    .icon{
+        width: 12em;
+        height: 12em;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+    .nameInput{
+        width: 50%;
+        display: flex;
+        filter:drop-shadow(0.3em 0.3em 0.3em rgba(0,0,0,0.2));
+        .inputName{
+            width: 100%;
+            background-color: hsl(var(--nextui-inputs));
+        }
+    }
+    .textarea{
+        width: 50% !important;
+        filter:drop-shadow(0.3em 0.3em 0.3em rgba(0,0,0,0.2));
+        .textareaInputWrapper{
+            background-color: hsl(var(--nextui-inputs));
+        }
+        .textareaInput{
+            min-height: 10em;
+            resize: vertical;
+        }
+    }
+    .button{
+        width: 16%;
+    }
+}

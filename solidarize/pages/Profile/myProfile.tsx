@@ -62,6 +62,10 @@ export default function MyProfile() {
     new ValidateItens([])
   );
 
+  const [isClient,setIsClient] = useState<boolean>(false);
+
+  useEffect(()=>{setIsClient(true);},[])
+
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
       if (
@@ -230,6 +234,7 @@ export default function MyProfile() {
   };
 
   return (
+    isClient ?
     <>
       <LoginDefault imageActive={false} center={true}>
         {loginResponse.UserInformation !== undefined &&
@@ -529,5 +534,6 @@ export default function MyProfile() {
         )}
       </LoginDefault>
     </>
+    :<></>
   );
 }

@@ -64,7 +64,6 @@ export const Navbar = () => {
       type="search"
     />
   );
-
   const Sair = () => {
     dispatch(
       setLoginResponse({
@@ -133,8 +132,8 @@ export const Navbar = () => {
                 <NavbarItem style={{ cursor: "pointer" }}>
                     <Avatar
                       src={
-                        loginResponse.UserInformation.Icon == undefined || null
-                          ? ""
+                        (loginResponse.UserInformation.Icon === undefined || loginResponse.UserInformation.Icon === null || loginResponse.UserInformation.Icon === "")
+                          ? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png"
                           : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
                               loginResponse.UserInformation.Icon!.split(".")[0]
                             }`

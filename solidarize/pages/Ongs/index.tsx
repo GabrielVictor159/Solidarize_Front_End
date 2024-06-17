@@ -23,6 +23,7 @@ import ProfileInformations from "@/components/profileInformations";
 import { Button } from "@nextui-org/react";
 import { HeartFilledIcon } from "@/components/icons";
 import ProfileMouseEnter from "@/components/ProfileMouseEnter";
+import NextLink from 'next/link';
 
 export default function OngsIndex() {
   const [locationObtained, setLocationObtained] = useState(false);
@@ -86,7 +87,6 @@ export default function OngsIndex() {
     } else {
       setOngs(requestGetOngs.Ongs);
     }
-    console.log(requestGetOngs.Ongs);
   };
   const [profileSelect, setProfileSelect] = useState<User>();
 
@@ -104,7 +104,8 @@ export default function OngsIndex() {
     }
   };
 
-  const [mouseProfileVisible, setMouseProfileVisible] = useState<boolean>(false);
+  const [mouseProfileVisible, setMouseProfileVisible] =
+    useState<boolean>(false);
   const [mouseProfile, setMouseProfile] = useState<OngMap>();
   return (
     <>
@@ -141,7 +142,7 @@ export default function OngsIndex() {
                       onMouseOut={() => {
                         setTimeout(() => {
                           setMouseProfileVisible(false);
-                        }, 1500); 
+                        }, 1500);
                       }}
                     />
                   ))}
@@ -151,26 +152,31 @@ export default function OngsIndex() {
           </nav>
           {profileSelect && (
             <>
-            <nav className={clsx(stylesHome.section2, styles.section2)}>
-              <ProfileInformations
-                userInformation={profileSelect}
-                map={false}
-              />
-              <Button
-                className={stylesHome.section2_button}
-                isIconOnly
-                color="danger"
-                variant="solid"
-              >
-                <HeartFilledIcon size={25} />
-                Registrar Doação
-              </Button>
-            </nav>
-            <nav className={clsx(styles.section3)}></nav>
+              <nav className={clsx(stylesHome.section2, styles.section2)}>
+                <ProfileInformations
+                  userInformation={profileSelect}
+                  map={false}
+                />
+                <NextLink href={`/Donations/Register/${profileSelect}`}>
+                  <Button
+                    className={stylesHome.section2_button}
+                    isIconOnly
+                    color="danger"
+                    variant="solid"
+                  >
+                    <HeartFilledIcon size={25} />
+                    Registrar Doação
+                  </Button>
+                </NextLink>
+              </nav>
+              <nav className={clsx(styles.section3)}></nav>
             </>
           )}
         </>
-        <ProfileMouseEnter visible={mouseProfileVisible} profile={mouseProfile}/>
+        <ProfileMouseEnter
+          visible={mouseProfileVisible}
+          profile={mouseProfile}
+        />
       </DefaultLayout>
     </>
   );
