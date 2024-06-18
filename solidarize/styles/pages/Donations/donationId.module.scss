@@ -1,6 +1,12 @@
+@use "../../global/global.scss" as global;
+@use "../../global/globalTexts.scss" as globalTexts;
 .container{
     justify-content: space-between !important;
     overflow: hidden;
+    h1{
+        font-size: 1.3em;
+        color: hsl(var(--nextui-primary));
+    }
 }
 .icon{
     width: 12em;
@@ -8,13 +14,16 @@
     object-fit: cover;
     border-radius: 100%;
 }
-
+$backgroundMessages: hsl(var(--nextui-backgroundMessage));
+.ContainerMessages{
+    width: 100%;
+}
 .MessagesView{
     width: 100%;
     height: 30em;
     margin-top: auto;
     overflow-y: auto;
-    background:  hsl(var(--nextui-backgroundMessage));
+    background:  $backgroundMessages;
     display: flex;
     flex-direction: column-reverse;
     align-items: end;
@@ -23,5 +32,110 @@
     scrollbar-width: none;
     ::-webkit-scrollbar {
         display: none;
+    }
+}
+.fileIcon{
+    object-fit: cover;
+    width: 1.5em;
+    position: absolute;
+    transform: translate(-5em,-0.7em);
+    opacity: 0.5;
+    cursor: pointer;
+}
+.ContainerInput{
+    width: 100%;
+    height: 4em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    .inputMessage{
+        width: 70%;
+    }
+    .inputMessage_inputWrapper{
+        @include global.shadows(0.3em, 0.3em, 0.1em, 0.2);
+        background-color:  hsl(var(--nextui-inputs));
+    }
+    .messageButon{
+        @include global.shadows(0.3em, 0.3em, 0.1em, 0.2);
+        transition: all 0.5s;
+        transform: translateY(0);
+        &:hover{
+            transform: translateY(-0.1em);
+        }
+    }
+    .messageButonIcon{
+        object-fit: cover;
+        width: 2em;
+    }
+}
+.ContainerFilesInput{
+    width: 100%;
+    height: 10em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .ElimateFiles{
+        width: 1.2em;
+        height: 1.2em;
+        border-radius: 100%;
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: hsl(var(--nextui-inputs));
+        cursor:pointer;
+    }
+    .FilesInputView{
+        width: 70%;
+        height: 80%;
+        transform: translateX(-2em);
+        background-color:  hsl(var(--nextui-inputs));
+        @include global.shadows(0.3em, 0.3em, 0.1em, 0.2);
+        border-radius: 0.5em;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        padding-left: 2em;
+        padding-right: 2em;
+        .filesViewImages{
+            width: 5em;
+            height: 5em;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 1em;
+            @include global.shadows(0.3em, 0.3em, 0.1em, 0.2);
+            object-fit: cover;
+        }
+        .filesViewVideos{
+            width: 5em;
+            height: 5em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 1em;
+            @include global.shadows(0.3em, 0.3em, 0.1em, 0.2);
+            .playImageContainer{
+                position: absolute;
+                width: 5em;
+                height: 5em;
+                border-radius: 1em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(78, 78, 78);
+                opacity: 0.6;
+            .imageVideoIcon{
+                width: 3em;
+                object-fit: cover;
+            }
+        }
+        }
     }
 }

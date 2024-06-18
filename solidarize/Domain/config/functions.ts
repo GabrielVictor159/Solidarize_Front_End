@@ -50,7 +50,7 @@ export function Sair(Dispatch: AppDispatch, router: NextRouter){
       UserInformation: undefined,
     })
   );
-  router.push("/");
+  router.push("/Login");
 }
 
 export function brtFormatter(dateString:string) {

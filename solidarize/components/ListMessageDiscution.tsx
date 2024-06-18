@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import User from "@/Domain/Model/Login/User";
 import MessageDiscution from "@/Domain/Model/Shipping/MessageDiscution";
 import Shipping from "@/Domain/Model/Shipping/Shipping";
@@ -28,8 +30,8 @@ type ListMessageDiscutionProps = {
   loginResponse: LoginResponse;
   otherUser: User;
   atualization: number;
-  setAtualization: (number:number)=>void;
-  messagesViewRef:HTMLDivElement | null
+  setAtualization: (number: number) => void;
+  messagesViewRef: HTMLDivElement | null;
 };
 const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
   shipping,
@@ -37,7 +39,7 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
   otherUser,
   atualization,
   setAtualization,
-  messagesViewRef
+  messagesViewRef,
 }) => {
   const [messagesDiscution, setMessagesDiscution] = useState<
     MessageDiscution[]
@@ -56,7 +58,7 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
     if (isClient && shipping.Id !== undefined && shipping.Id !== null) {
       getMessagesDiscution();
     }
-  }, [atualization,isClient, shipping]);
+  }, [atualization, isClient, shipping]);
 
   const getMessagesDiscution = async () => {
     const headers = {
@@ -92,15 +94,32 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
   };
   return (
     <>
-        {messagesDiscution.map((message, messageIndex) => {
-          return (
-            <>
-            <br/>
-            <div key={messageIndex} className={styles.MessageLine} style={{justifyContent:message.IdUser !== loginResponse.UserInformation?.Id ?"start":"end"}}>
+      {messagesDiscution.map((message, messageIndex) => {
+        return (
+          <>
+            <br />
+            <div
+              key={messageIndex}
+              className={styles.MessageLine}
+              style={{
+                justifyContent:
+                  message.IdUser !== loginResponse.UserInformation?.Id
+                    ? "start"
+                    : "end",
+              }}
+            >
               <div className={styles.divisionTextMessage}>
                 <p>{message.Message}</p>
-                <br/>
-                <div className={styles.divisionAttachedFiles} style={{justifyContent:message.IdUser !== loginResponse.UserInformation?.Id ?"start":"end"}}>
+                <br />
+                <div
+                  className={styles.divisionAttachedFiles}
+                  style={{
+                    justifyContent:
+                      message.IdUser !== loginResponse.UserInformation?.Id
+                        ? "start"
+                        : "end",
+                  }}
+                >
                   {message.AttachedFiles.map((attachedFile, fileIndex) => {
                     if (attachedFile.Type === 0 || attachedFile.Type === 1) {
                       return (
@@ -111,10 +130,7 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
                               <>
                                 <Image
                                   alt="Imagem attached file"
-                                  src={`${
-                                    process.env
-                                      .NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION
-                                  }${attachedFile.Item}`}
+                                  src={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION}${attachedFile.Item}`}
                                 />
                               </>
                             );
@@ -125,10 +141,7 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
                             <Image
                               alt="Imagem do Usuario"
                               className={styles.attachedFileImage}
-                              src={`${
-                                process.env
-                                  .NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION
-                              }${attachedFile.Item}`}
+                              src={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION}${attachedFile.Item}`}
                             />
                           </>
                         </a>
@@ -143,6 +156,7 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
                                 <ReactPlayer
                                   url={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION}${attachedFile.Item}`}
                                   playing={true}
+                                  controls={true}
                                 />
                               </>
                             );
@@ -150,10 +164,14 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
                           }}
                         >
                           <>
-                            <ReactPlayer
-                              url={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION}${attachedFile.Item}`}
-                              playing={false}
-                            />
+                            <div className={styles.filesViewVideos}>
+                              <ReactPlayer
+                                width={120}
+                                height={120}
+                                url={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE_MESSAGEDISCUTION}${attachedFile.Item}`}
+                                playing={false}
+                              />
+                            </div>
                           </>
                         </a>
                       );
@@ -165,11 +183,7 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
                           download
                         >
                           <>
-                            <Image
-                              alt="Imagem file"
-                              className={styles.attachedFileImageFile}
-                              src={"/"}
-                            />
+                          <img  src="/icons8-file-96.png"/>
                           </>
                         </a>
                       );
@@ -180,26 +194,10 @@ const ListMessageDiscution: React.FC<ListMessageDiscutionProps> = ({
                   <p>{brtFormatter(message.CreationDate)}</p>
                 </div>
               </div>
-              {message.IdUser !== loginResponse.UserInformation?.Id ? (
-                <Image
-                  className={styles.IconUser}
-                  alt="Imagem do Usuario"
-                  src={
-                    (otherUser.$Icon===undefined || otherUser.$Icon === "")
-                      ? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png"
-                      : `${
-                          process.env
-                            .NEXT_PUBLIC_CONTAINER_IMAGE
-                        }${otherUser.$Icon!}`
-                  }
-                />
-              ) : (
-                <></>
-              )}
             </div>
-            </>
-          );
-        })}
+          </>
+        );
+      })}
       <ImageModal
         className={stylesProfile.Image_Modal}
         isOpen={modalOpen}
