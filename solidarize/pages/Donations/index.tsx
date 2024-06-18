@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "@/styles/pages/Donations/donations.module.scss";
 import Donation from "@/components/donation";
 import { Sair } from "@/Domain/config/functions";
+import { Input } from "@nextui-org/react";
 
 export default function DonationsIndes() {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function DonationsIndes() {
   const [isClient, setIsClient] = useState(false);
   const [shippingsState, setShippingsState] = useState<Shipping[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [search,setSearch] = useState<string>("");
   const pageSize: number = 4;
   const dispatch = useDispatch<AppDispatch>();
 
@@ -36,7 +38,7 @@ export default function DonationsIndes() {
 
   useEffect(() => {
     getShippings();
-  }, [isClient, loginResponse]);
+  }, [search,isClient, loginResponse]);
 
   const getShippings = async () => {
     if (isClient && loginResponse !== undefined) {
@@ -44,7 +46,7 @@ export default function DonationsIndes() {
       const response = await axios.post(
         `${BACK_END_URL}/api/GetMyShippings`,
         {
-          Name: undefined,
+          Name: search,
           IdShipping: undefined,
         },
         {
@@ -115,6 +117,23 @@ export default function DonationsIndes() {
         <>
           <nav className={styles.division1}>
             <div className={styles.container}>
+              <div className={styles.containerInput}>
+              <Input
+                    onClear={() => setSearch("")}
+                    className={styles.nameInput}
+                    classNames={{
+                      label: "text-black/50 dark:text-white/90",
+                      inputWrapper: styles.inputName,
+                    }}
+                    type="text"
+                    placeholder="Nome da doação"
+                    readOnly
+                    onFocus={(e) => e.target.removeAttribute("readOnly")}
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                    }}
+                  />
+              </div>
               {currentShippings.map((e, index) => {
                 return (
                   <Donation

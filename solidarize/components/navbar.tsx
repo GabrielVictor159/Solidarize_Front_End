@@ -39,17 +39,30 @@ import { Logo } from "@/components/icons";
 import styles from "../styles/components/navbar.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/Provider/Store";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { setLoginResponse } from "@/Provider/Slices/LoginSlice";
 import { useRouter } from "next/router";
+import UsersView from "./usersView";
 
 export const Navbar = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const loginResponse = useSelector((state: RootState) => state.loginResponse);
+  const [userSearch, setUserSearch] = useState<string>("");
+  const [usersView, setUsersView] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement|any>(null);
 
+  useEffect(()=>{
+    if(userSearch===""){
+      setUsersView(false);
+    }
+    else{
+      setUsersView(true);
+    }
+  },[userSearch])
   const searchInput = (
     <Input
+      ref={inputRef}
       aria-label="Search"
       classNames={{
         inputWrapper: "bg-default-100",
@@ -58,6 +71,10 @@ export const Navbar = () => {
       endContent={<></>}
       labelPlacement="outside"
       placeholder="Search..."
+      onClear={()=>{setUserSearch("");}}
+      onChange={(e)=>{
+        setUserSearch(e.target.value)
+      }}
       startContent={
         <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
       }
@@ -83,7 +100,7 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
+            <img src="/Logo_Ong.png" className={styles.logo}/>
             <p className="font-bold text-inherit">SOLIDARIZE</p>
           </NextLink>
         </NavbarBrand>
@@ -115,7 +132,7 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        {/* <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem> */}
+        <NavbarItem className="hidden lg:flex">{usersView ? <UsersView search={userSearch}/>:<></>}{searchInput}</NavbarItem>
         {loginResponse.UserInformation == undefined ? (
           <NavbarItem style={{ cursor: "pointer" }}>
             <NextLink href="/Login">

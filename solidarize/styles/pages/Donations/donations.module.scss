@@ -29,3 +29,13 @@
     padding-top: 2em;
   }
 }
+.containerInput{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  padding-right: 1em;
+  .nameInput{
+    width: 20%;
+  }
+}

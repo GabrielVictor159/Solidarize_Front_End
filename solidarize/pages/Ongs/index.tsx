@@ -24,10 +24,13 @@ import { Button } from "@nextui-org/react";
 import { HeartFilledIcon } from "@/components/icons";
 import ProfileMouseEnter from "@/components/ProfileMouseEnter";
 import NextLink from 'next/link';
+import { useSelector } from "react-redux";
+import { RootState } from "@/Provider/Store";
 
 export default function OngsIndex() {
   const [locationObtained, setLocationObtained] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const loginResponse = useSelector((state: RootState) => state.loginResponse);
   const [defaultRegion, setDefaultRegion] = useState<RegionMap>({
     lat: -15.77972,
     lng: -47.92972,
@@ -125,7 +128,9 @@ export default function OngsIndex() {
                   gestureHandling={"greedy"}
                   disableDefaultUI={true}
                 >
-                  {ongs.map((ong) => (
+                  {ongs.map((ong) =>{
+                    if(ong.Id!==loginResponse.UserInformation?.Id)
+                    return(
                     <Marker
                       key={ong.Id}
                       position={{
@@ -145,7 +150,7 @@ export default function OngsIndex() {
                         }, 1500);
                       }}
                     />
-                  ))}
+                  )} )}
                 </Map>
               </APIProvider>
             </div>
@@ -157,7 +162,7 @@ export default function OngsIndex() {
                   userInformation={profileSelect}
                   map={false}
                 />
-                <NextLink href={`/Donations/Register/${profileSelect}`}>
+                <NextLink href={`/Donations/Register/${profileSelect.$Id}`}>
                   <Button
                     className={stylesHome.section2_button}
                     isIconOnly

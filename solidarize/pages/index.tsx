@@ -5,7 +5,7 @@ import { HeartFilledIcon, HeartIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import styles from "@/styles/pages/index.module.scss";
 import { Button, Image } from "@nextui-org/react";
-
+import NextLink from "next/link";
 export default function IndexPage() {
 	return (
 		<>
@@ -40,10 +40,12 @@ export default function IndexPage() {
 							/>
 						</div>
 						<br/>
+						<NextLink href={"/Ongs"}>
 						<Button className={styles.section2_button} isIconOnly color="danger"  variant="solid">
 							<HeartFilledIcon size={25}/>
         					Doar
       					</Button>  
+						</NextLink>
 					</nav>
 					<nav className={styles.section3}>
 						<h1>
@@ -71,10 +73,12 @@ export default function IndexPage() {
 							/>
 						</div>
 						<br/>
+						<NextLink href={"/Donations"}>
 						<Button className={styles.section3_button} isIconOnly color="danger"  variant="solid">
 							<img className={styles.section3_button_icon} src="/icons8-signing-a-document-100.png"/>
-        					Registrar doação
+        					Doações
       					</Button>  
+						</NextLink>
 					</nav>
 				</>
 			</DefaultLayout>

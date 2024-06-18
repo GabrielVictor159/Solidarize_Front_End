@@ -37,8 +37,10 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
           setModalContent(
             <Image
               alt="Imagem do Usuario"
-              src={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
-                userInformation.$Icon!.split(".")[0]
+              src={`${
+                userInformation?.$Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
+                  userInformation?.$Icon!.split(".")[0]
+                        }`
               }`}
             />
           );
@@ -48,7 +50,11 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
         <Image
           alt="Imagem do Usuario"
           className={clsx(styles.Icon_View_Container_Image, styles.Image_Icon)}
-          src={`/api/comprimir-imagem?url=${encodeURIComponent(process.env.NEXT_PUBLIC_CONTAINER_IMAGE + userInformation.$Icon!.split(".")[0])}`}
+          src={`${
+            userInformation?.$Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
+              userInformation?.$Icon!.split(".")[0]
+                    }`
+          }`}
         />
       </a>
       <br />
@@ -75,9 +81,9 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
                     styles.Icon_View_Container_Image,
                     styles.Images
                   )}
-                  src={`/api/comprimir-imagem?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
+                  src={`${process.env.NEXT_PUBLIC_CONTAINER_IMAGE}${
                     e!.split(".")[0]
-                  }`)}`}
+                  }`}
                 />
               </a>
             </>

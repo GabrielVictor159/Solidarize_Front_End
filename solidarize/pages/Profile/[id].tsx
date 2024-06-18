@@ -45,6 +45,8 @@ export default function Profile() {
             <ProfileInformations userInformation={userInformation} />
             
           )}
+          {
+            userInformation?.$LegalNature==="ONG"?
           <Button
                 className={stylesHome.section2_button}
                 isIconOnly
@@ -52,8 +54,10 @@ export default function Profile() {
                 variant="solid"
               >
                 <HeartFilledIcon size={25} />
-                Registrar Doação
+                Doar
               </Button>
+              :<></>
+          }
           <br/>
         </>
       </LoginDefault>
