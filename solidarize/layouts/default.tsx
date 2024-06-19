@@ -28,8 +28,8 @@ export default function DefaultLayout({
         <Link
           isExternal
           className="flex items-center gap-1 text-current"
-          href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
-          title="nextui.org homepage"
+          href="https://www.linkedin.com/in/gabriel-victor159/"
+          title="Creator page Linkedin"
         >
           <span className="text-default-600">Powered by</span>
           <p className="text-primary">Gabriel</p>
