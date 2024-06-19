@@ -36,7 +36,7 @@ export default function RegisterIndex() {
   useEffect(() => {
     const updateValidateItens = (newItem: ValidateItensItem) => {
       setValidateItens(prevState => {
-        const clonedState = new ValidateItens([...prevState.$Items]);
+        const clonedState = new ValidateItens([...prevState.Items]);
         clonedState.AddItem(newItem);
         return clonedState;
       });
@@ -56,7 +56,7 @@ export default function RegisterIndex() {
   let useCase = new UseCaseFactory().Resolve(UseCasesEnum.RegisterCompany);
   const router = useRouter();
   const Register = async () => {
-    let invalidItens = validateItens.$Items.filter(e=>e.Valid==false);
+    let invalidItens = validateItens.Items.filter(e=>e.Valid==false);
     if(invalidItens.length>0){
       invalidItens.forEach(e=>{
         toast.info(e.Message);
@@ -67,7 +67,7 @@ export default function RegisterIndex() {
     let request = new RegisterRequest(companyName,description,legalNature,mapEventClick!.region.lat,mapEventClick!.region.lng,cnpj,address,phone,email,password);
         await useCase?.Execute(request);
         if (request.ApiBadResponse!=undefined) {
-          request.ApiBadResponse.$Response.forEach((message)=>{
+          request.ApiBadResponse.Response.forEach((message)=>{
                 toast.info(message);
             })
         }

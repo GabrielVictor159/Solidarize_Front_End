@@ -18,7 +18,7 @@ export default class ConfirmRecoverPasswordUseCase implements IConfirmRecoverPas
             console.error('Erro capturado:', error.message);
         }
         finally{
-            console.log(JSON.stringify(request.$Logs));
+            console.log(JSON.stringify(request.Logs));
         }
     }
 

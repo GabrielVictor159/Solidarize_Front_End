@@ -65,12 +65,12 @@ const UsersView: React.FC<UsersViewProps> = ({ search }) => {
     <>
       <div className={styles.container}>
         {companies.map((company: User) => {
-          if (company.$Id !== loginResponse.UserInformation?.Id) {
+          if (company.Id !== loginResponse.UserInformation?.Id) {
             return (
               <a
-                key={company.$Id}
+                key={company.Id}
                 onClick={() => {
-                  router.push(`/Profile/${company.$Id}`);
+                  router.push(`/Profile/${company.Id}`);
                 }}
               >
                 <div className={styles.itemContainerCompanies}>
@@ -79,18 +79,18 @@ const UsersView: React.FC<UsersViewProps> = ({ search }) => {
                     as="button"
                     className="transition-transform"
                     src={`${
-                      company?.$Icon === ""
+                      company?.Icon === ""
                         ? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png"
                         : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
-                            company?.$Icon!.split(".")[0]
+                            company?.Icon!.split(".")[0]
                           }`
                     }`}
                   />
                   <div>
                     <h1 className={styles.titlesCompanies}>
-                      {company.$CompanyName}
+                      {company.CompanyName}
                     </h1>
-                    <p>{company.$Email}</p>
+                    <p>{company.Email}</p>
                   </div>
                 </div>
               </a>

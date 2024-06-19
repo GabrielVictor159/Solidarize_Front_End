@@ -9,15 +9,15 @@ export default class GetTokenHandler extends Handler<LoginRequest> {
         request.AddLog("Process reached LoginUseCase GetTokenHandler");
         let BACK_END_URL = process.env.NEXT_PUBLIC_BACK_END_URL;
         const response = await axios.post(`${BACK_END_URL}/api/Login`, {
-            Email: request.$Email,
-            Password: request.$Password
+            Email: request.Email,
+            Password: request.Password
         }, {
             headers: {
                 'Content-Type': 'application/json'
             },
             validateStatus: () => true
         })
-        request.$LoginResponse.$Token = response.data.token;
+        request.LoginResponse.Token = response.data.token;
         if (response.status >= 300 || response.status < 200) {
             if (response.status == 400) {
                 let errors = response.data;
@@ -25,10 +25,10 @@ export default class GetTokenHandler extends Handler<LoginRequest> {
                 errors.forEach((error:any) => {
                      messagesErrors.push(error.Message);
                  });
-                request.$ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
+                request.ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
             }
             else {
-                request.$ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
+                request.ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
             }
             return;
         }

@@ -27,14 +27,14 @@ export default function IndexPage() {
     const Login = async (): Promise<void> => {
         let loginRequest = new LoginRequest(Email, Password);
         await useCase?.Execute(loginRequest);
-        if (loginRequest.$ApiBadResponse!=undefined) {
-            loginRequest.$ApiBadResponse.$Response.forEach((message)=>{
+        if (loginRequest.ApiBadResponse!=undefined) {
+            loginRequest.ApiBadResponse.Response.forEach((message)=>{
                 toast.info(message);
             })
         }
         else
         {
-            let loginResponseSerialize = loginRequest.$LoginResponse.serializeLoginResponse();
+            let loginResponseSerialize = loginRequest.LoginResponse.serializeLoginResponse();
             dispatch(setLoginResponse(loginResponseSerialize));
             router.push("/");
         }

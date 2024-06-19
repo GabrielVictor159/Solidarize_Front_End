@@ -38,8 +38,8 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
             <Image
               alt="Imagem do Usuario"
               src={`${
-                userInformation?.$Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
-                  userInformation?.$Icon!.split(".")[0]
+                userInformation?.Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
+                  userInformation?.Icon!.split(".")[0]
                         }`
               }`}
             />
@@ -51,15 +51,15 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
           alt="Imagem do Usuario"
           className={clsx(styles.Icon_View_Container_Image, styles.Image_Icon)}
           src={`${
-            userInformation?.$Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
-              userInformation?.$Icon!.split(".")[0]
+            userInformation?.Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
+              userInformation?.Icon!.split(".")[0]
                     }`
           }`}
         />
       </a>
       <br />
       <div className={styles.Images_Container}>
-        {userInformation.$Images?.map((e) => {
+        {userInformation.Images?.map((e) => {
           return (
             <>
               <a
@@ -93,27 +93,27 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
       <br />
       <br />
       <h1 className={styles.Title_Itens}>Nome da Empresa</h1>
-      <p className={styles.Text_Itens}>{userInformation.$CompanyName}</p>
+      <p className={styles.Text_Itens}>{userInformation.CompanyName}</p>
       <h1 className={styles.Title_Itens}>Descrição</h1>
-      <p className={styles.Text_Itens}>{userInformation.$Description}</p>
+      <p className={styles.Text_Itens}>{userInformation.Description}</p>
       <h1 className={styles.Title_Itens}>Endereço</h1>
-      <p className={styles.Text_Itens}>{userInformation.$Address}</p>
+      <p className={styles.Text_Itens}>{userInformation.Address}</p>
       <h1 className={styles.Title_Itens}>CNPJ</h1>
-      <p className={styles.Text_Itens}>{userInformation.$CNPJ}</p>
+      <p className={styles.Text_Itens}>{userInformation.CNPJ}</p>
       <h1 className={styles.Title_Itens}>Email</h1>
-      <p className={styles.Text_Itens}>{userInformation.$Email}</p>
+      <p className={styles.Text_Itens}>{userInformation.Email}</p>
       <h1 className={styles.Title_Itens}>Natureza Legal</h1>
-      <p className={styles.Text_Itens}>{userInformation.$LegalNature}</p>
+      <p className={styles.Text_Itens}>{userInformation.LegalNature}</p>
       <h1 className={styles.Title_Itens}>Telefone</h1>
-      <p className={styles.Text_Itens}>{userInformation.$Telefone}</p>
+      <p className={styles.Text_Itens}>{userInformation.Telefone}</p>
       <br />
       {map ===true?
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY!}>
         <Map
           className={styles.Map}
           defaultCenter={{
-            lat: Number.parseFloat(userInformation.$LocationX ?? "0"),
-            lng: Number.parseFloat(userInformation.$LocationY ?? "0"),
+            lat: Number.parseFloat(userInformation.LocationX ?? "0"),
+            lng: Number.parseFloat(userInformation.LocationY ?? "0"),
           }}
           defaultZoom={13}
           disableDoubleClickZoom={true}
@@ -122,8 +122,8 @@ const ProfileInformations: React.FC<profileInformationsProps> = ({
         />
 
         <Marker position={{
-            lat: Number.parseFloat(userInformation.$LocationX ?? "0"),
-            lng: Number.parseFloat(userInformation.$LocationY ?? "0"),
+            lat: Number.parseFloat(userInformation.LocationX ?? "0"),
+            lng: Number.parseFloat(userInformation.LocationY ?? "0"),
           }} />
       </APIProvider>
       :<></>

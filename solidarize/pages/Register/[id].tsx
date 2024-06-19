@@ -29,7 +29,7 @@ export default function ConfirmRegister() {
     await useCase?.Execute(request);
     if (request.ApiBadResponse!=undefined) {
         setSucess(false);
-        request.ApiBadResponse.$Response.forEach((message)=>{
+        request.ApiBadResponse.Response.forEach((message)=>{
             toast.error(message);
         })
     }

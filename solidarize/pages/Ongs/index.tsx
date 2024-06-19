@@ -84,7 +84,7 @@ export default function OngsIndex() {
     let requestGetOngs = new GetOngsRequest();
     await useCaseGetOngs?.Execute(requestGetOngs);
     if (requestGetOngs.ApiBadResponse != undefined) {
-      requestGetOngs.ApiBadResponse.$Response.forEach((message) => {
+      requestGetOngs.ApiBadResponse.Response.forEach((message) => {
         toast.info(message);
       });
     } else {
@@ -98,12 +98,12 @@ export default function OngsIndex() {
   const GetProfile = async (id: string) => {
     let request = new GetProfileRequest(id?.toString() ?? "");
     await useCaseGetProfile?.Execute(request);
-    if (request.$ApiBadResponse != undefined) {
-      request.$ApiBadResponse.$Response.forEach((message) => {
+    if (request.ApiBadResponse != undefined) {
+      request.ApiBadResponse.Response.forEach((message) => {
         toast.error(message);
       });
     } else {
-      setProfileSelect(request.$Profile);
+      setProfileSelect(request.Profile);
     }
   };
 
@@ -162,7 +162,7 @@ export default function OngsIndex() {
                   userInformation={profileSelect}
                   map={false}
                 />
-                <NextLink href={`/Donations/Register/${profileSelect.$Id}`}>
+                <NextLink href={`/Donations/Register/${profileSelect.Id}`}>
                   <Button
                     className={stylesHome.section2_button}
                     isIconOnly

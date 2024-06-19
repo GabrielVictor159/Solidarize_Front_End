@@ -43,6 +43,7 @@ import { useEffect, useRef, useState } from "react";
 import { setLoginResponse } from "@/Provider/Slices/LoginSlice";
 import { useRouter } from "next/router";
 import UsersView from "./usersView";
+import { toast } from "react-toastify";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -60,6 +61,7 @@ export const Navbar = () => {
       setUsersView(true);
     }
   },[userSearch])
+  useEffect(()=>{console.log(loginResponse);},[loginResponse])
   const searchInput = (
     <Input
       ref={inputRef}
@@ -132,7 +134,10 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{usersView ? <UsersView search={userSearch}/>:<></>}{searchInput}</NavbarItem>
+        <NavbarItem className="hidden lg:flex">
+          {usersView ? 
+          loginResponse.Token===undefined?<></>:
+          <UsersView search={userSearch}/>:<></>}{loginResponse.Token===undefined?<></>: searchInput}</NavbarItem>
         {loginResponse.UserInformation == undefined ? (
           <NavbarItem style={{ cursor: "pointer" }}>
             <NextLink href="/Login">

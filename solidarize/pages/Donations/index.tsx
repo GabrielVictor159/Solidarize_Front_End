@@ -90,11 +90,11 @@ export default function DonationsIndes() {
           shippings.forEach((e) => {
             e.IdUserCreation &&
               (e.UserCreation = companies.find(
-                (x) => x.$Id === e.IdUserCreation
+                (x) => x.Id === e.IdUserCreation
               ));
             e.IdUserResponse &&
               (e.UserResponse = companies.find(
-                (x) => x.$Id === e.IdUserResponse
+                (x) => x.Id === e.IdUserResponse
               ));
           });
         }

@@ -26,13 +26,13 @@ export default function Profile() {
   const GetProfile = async () => {
     let request = new GetProfileRequest(id?.toString() ?? "");
     await useCase?.Execute(request);
-    if (request.$ApiBadResponse != undefined) {
-      request.$ApiBadResponse.$Response.forEach((message) => {
+    if (request.ApiBadResponse != undefined) {
+      request.ApiBadResponse.Response.forEach((message) => {
         toast.error(message);
         router.push("/");
       });
     } else {
-      setUserInformation(request.$Profile);
+      setUserInformation(request.Profile);
     }
   };
 
@@ -46,7 +46,7 @@ export default function Profile() {
             
           )}
           {
-            userInformation?.$LegalNature==="ONG"?
+            userInformation?.LegalNature==="ONG"?
           <Button
                 className={stylesHome.section2_button}
                 isIconOnly

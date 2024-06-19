@@ -40,20 +40,20 @@ export default function RegisterDonation() {
   const GetProfile = async () => {
     let request = new GetProfileRequest(id?.toString() ?? "");
     await useCase?.Execute(request);
-    if (request.$ApiBadResponse != undefined) {
-      request.$ApiBadResponse.$Response.forEach((message) => {
+    if (request.ApiBadResponse != undefined) {
+      request.ApiBadResponse.Response.forEach((message) => {
         toast.error(message);
         router.push("/");
       });
     } else {
-      setUserInformation(request.$Profile);
+      setUserInformation(request.Profile);
     }
   };
-  useEffect(()=>{if(isClient && loginResponse.UserInformation?.Id===userInformation?.$Id){router.push("/")}},[loginResponse,userInformation])
+  useEffect(()=>{if(isClient && loginResponse.UserInformation?.Id===userInformation?.Id){router.push("/")}},[loginResponse,userInformation])
   useEffect(() => {
     if (
       userInformation !== undefined &&
-      userInformation.$LegalNature !== LegalNature.ONG
+      userInformation.LegalNature !== LegalNature.ONG
     ) {
       router.push("/Ongs");
     }
@@ -76,7 +76,7 @@ export default function RegisterDonation() {
         const response = await axios.post(
           `${BACK_END_URL}/api/CreateShipping`,
           {
-            IdUserDestination: userInformation.$Id,
+            IdUserDestination: userInformation.Id,
             Description: description,
             Name: donationName
           },
@@ -116,10 +116,10 @@ export default function RegisterDonation() {
                     alt="Imagem do Usuario"
                     className={styles.icon}
                     src={`${
-                      userInformation?.$Icon === ""
+                      userInformation?.Icon === ""
                         ? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png"
                         : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
-                            userInformation?.$Icon!.split(".")[0]
+                            userInformation?.Icon!.split(".")[0]
                           }`
                     }`}
                   />

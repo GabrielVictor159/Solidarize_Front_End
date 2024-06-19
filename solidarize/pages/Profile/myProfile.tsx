@@ -105,7 +105,7 @@ export default function MyProfile() {
   useEffect(() => {
     const updateValidateItens = (newItem: ValidateItensItem) => {
       setValidateItens((prevState) => {
-        const clonedState = new ValidateItens([...prevState.$Items]);
+        const clonedState = new ValidateItens([...prevState.Items]);
         clonedState.AddItem(newItem);
         return clonedState;
       });
@@ -183,7 +183,7 @@ export default function MyProfile() {
       }
     }
 
-    let invalidItens = validateItens.$Items.filter((e) => e.Valid == false);
+    let invalidItens = validateItens.Items.filter((e) => e.Valid == false);
     if (invalidItens.length > 0) {
       invalidItens.forEach((e) => {
         toast.info(e.Message);
@@ -207,28 +207,28 @@ export default function MyProfile() {
       phone.length > 0 ? phone : undefined,
       password.length > 0 ? password : undefined
     );
-    request.$Images = imagesReq;
-    request.$token = loginResponse.Token ?? "";
+    request.Images = imagesReq;
+    request.token = loginResponse.Token ?? "";
 
     await useCase?.Execute(request);
-    if (request.$ApiBadResponse != undefined) {
-      request.$ApiBadResponse.$Response.forEach((message) => {
+    if (request.ApiBadResponse != undefined) {
+      request.ApiBadResponse.Response.forEach((message) => {
         toast.info(message);
       });
     } else {
       let loginResponse = new LoginResponse();
-      loginResponse.$Token = request.$token;
-      loginResponse.$UserInformation = request.$UserInformation;
+      loginResponse.Token = request.token;
+      loginResponse.UserInformation = request.UserInformation;
       dispatch(setLoginResponse(loginResponse.serializeLoginResponse()));
       router.push("/");
     }
   };
 
   const RemoveItemValidateItens = (a: string) => {
-    let index = validateItens.$Items.findIndex((e) => e.Name === a);
+    let index = validateItens.Items.findIndex((e) => e.Name === a);
     if (index !== -1) {
-      let newValidateItens = new ValidateItens([...validateItens.$Items]);
-      newValidateItens.$Items.splice(index, 1);
+      let newValidateItens = new ValidateItens([...validateItens.Items]);
+      newValidateItens.Items.splice(index, 1);
       setValidateItens(newValidateItens);
     }
   };

@@ -10,7 +10,7 @@ export default class GetProfileHandler extends Handler<GetProfileRequest>{
 
         let BACK_END_URL = process.env.NEXT_PUBLIC_BACK_END_URL;
         const response = await axios.post(`${BACK_END_URL}/api/GetProfile`, {
-            Id:request.$Id
+            Id:request.Id
         }, {
             headers: {
                 'Content-Type': 'application/json'
@@ -25,15 +25,15 @@ export default class GetProfileHandler extends Handler<GetProfileRequest>{
                 errors.forEach((error: any) => {
                     messagesErrors.push(error.Message);
                 });
-                request.$ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
+                request.ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
             }
             else {
-                request.$ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
+                request.ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
             }
             return;
         }
 
-        request.$Profile = new User(response.data);
+        request.Profile = new User(response.data);
         if (this.sucessor) {
             await this.sucessor.ProcessRequest(request);
         }

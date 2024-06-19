@@ -17,7 +17,7 @@ export default class GetProfileUseCase implements IGetProfileUseCase{
             console.error('Erro capturado:', error.message);
         }
         finally{
-            console.log(JSON.stringify(request.$Logs));
+            console.log(JSON.stringify(request.Logs));
         }
     }
 

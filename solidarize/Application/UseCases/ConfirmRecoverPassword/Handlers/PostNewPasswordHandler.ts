@@ -9,8 +9,8 @@ export default class PostNewPasswordHandler extends Handler<ConfirmRecoverPasswo
         request.AddLog("Process reached ConfirmRecoverPasswordUseCase PostNewPasswordHandler");
         let BACK_END_URL = process.env.NEXT_PUBLIC_BACK_END_URL;
         const response = await axios.post(`${BACK_END_URL}/api/ConfirmRecoverPassword`, {
-            IdRequest: request.$IdRequest,
-            NewPassword: request.$NewPassword
+            IdRequest: request.IdRequest,
+            NewPassword: request.NewPassword
         }, {
             headers: {
                 'Content-Type': 'application/json'
@@ -24,10 +24,10 @@ export default class PostNewPasswordHandler extends Handler<ConfirmRecoverPasswo
                 errors.forEach((error:any) => {
                      messagesErrors.push(error.Message??error.errorMessage);
                  });
-                request.$ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
+                request.ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
             }
             else {
-                request.$ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
+                request.ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
             }
             return;
         }

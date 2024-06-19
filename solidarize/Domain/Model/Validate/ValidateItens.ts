@@ -5,22 +5,15 @@ export default class ValidateItens{
     {
         this.Items=items;
     }
-    private Items: ValidateItensItem[];
-
-    public get $Items(): ValidateItensItem[] {
-        return this.Items;
-    }
-    public set $Items(value: ValidateItensItem[]) {
-        this.Items = value;
-    }
+    public Items: ValidateItensItem[];
 
     public AddItem(item:ValidateItensItem){
         var resultItem = this.Items.findIndex(e=>e.Name===item.Name);
         if(resultItem===-1){
-            this.$Items.push(item);
+            this.Items.push(item);
         }
         else{
-            this.$Items[resultItem]=item;
+            this.Items[resultItem]=item;
         }
     }
   }

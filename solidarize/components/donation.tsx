@@ -29,12 +29,12 @@ const Donation: React.FC<donationProps> = ({ loginResponse, donation }) => {
                 alt="Imagem do Usuario"
                 className={styles.icon}
                 src={`${
-                  userDonation?.$Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
-                            userDonation?.$Icon!.split(".")[0]
+                  userDonation?.Icon ===""? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png" : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
+                            userDonation?.Icon!.split(".")[0]
                           }`
                 }`}
               />
-              <p>{userDonation?.$CompanyName}</p>
+              <p>{userDonation?.CompanyName}</p>
                 </div>
               <h1>{donation.Name}</h1>
               <p>{donation.CreationDate !== undefined ? brtFormatter(donation.CreationDate):""}</p>

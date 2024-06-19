@@ -13,11 +13,11 @@ export default class GetMyInformationHandler extends Handler<PatchCompanyRequest
         const response = await axios.get(`${BACK_END_URL}/api/GetMyInformation`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `${request.$token}`
+                'Authorization': `${request.token}`
             },
             validateStatus: () => true
         })
-        request.$UserInformation = new User(response.data);
+        request.UserInformation = new User(response.data);
         if (response.status >= 300 || response.status < 200) {
             if (response.status == 400) {
                 let errors = response.data;
@@ -25,10 +25,10 @@ export default class GetMyInformationHandler extends Handler<PatchCompanyRequest
                 errors.forEach((error: any) => {
                     messagesErrors.push(error.Message);
                 });
-                request.$ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
+                request.ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
             }
             else {
-                request.$ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
+                request.ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
             }
         }
         if (this.sucessor) {

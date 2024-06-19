@@ -25,8 +25,8 @@ export default function RecoverPassword() {
         }
         let request = new ConfirmRecoverPasswordRequest(id?.toString()??"",Password);
         await useCase?.Execute(request);
-        if (request.$ApiBadResponse!=undefined) {
-            request.$ApiBadResponse.$Response.forEach((message)=>{
+        if (request.ApiBadResponse!=undefined) {
+            request.ApiBadResponse.Response.forEach((message)=>{
                 toast.error(message);
             })
         }

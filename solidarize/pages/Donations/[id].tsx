@@ -179,10 +179,10 @@ export default function DonationId() {
                   alt="Imagem do Usuario"
                   className={styles.icon}
                   src={`${
-                    !otherUser?.$Icon
+                    !otherUser?.Icon
                       ? "/0587496e-6e1f-4e5b-a60f-19c3cf931a3d.png"
                       : `${process.env.NEXT_PUBLIC_CONTAINER_IMAGE ?? ""}${
-                          otherUser.$Icon.split(".")[0]
+                          otherUser.Icon.split(".")[0]
                         }`
                   }`}
                 />

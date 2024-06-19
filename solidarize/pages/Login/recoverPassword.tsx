@@ -23,8 +23,8 @@ export default function RecoverPassword() {
     const Recover = async (): Promise<void> => {
         let loginRequest = new RequestRecoverPasswordRequest(Email);
         await useCase?.Execute(loginRequest);
-        if (loginRequest.$ApiBadResponse != undefined) {
-            loginRequest.$ApiBadResponse.$Response.forEach((message) => {
+        if (loginRequest.ApiBadResponse != undefined) {
+            loginRequest.ApiBadResponse.Response.forEach((message) => {
                 toast.info(message);
             })
         }

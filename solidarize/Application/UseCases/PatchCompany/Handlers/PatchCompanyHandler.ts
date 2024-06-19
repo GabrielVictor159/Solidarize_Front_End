@@ -10,25 +10,25 @@ export default class PatchCompanyHandler extends Handler<PatchCompanyRequest>{
 
         let BACK_END_URL = process.env.NEXT_PUBLIC_BACK_END_URL;
         const response = await axios.patch(`${BACK_END_URL}/api/PatchCompany`, {
-            companyName: request.$CompanyName,
-            Images: request.$Images,
-            Icon: request.$Icon,
-            Description: request.$Description,
-            LegalNature: request.$LegalNature,
-            LocationX: request.$LocationX,
-            LocationY: request.$LocationY,
-            CNPJ: request.$CNPJ,
-            Address: request.$Address,
-            Telefone: request.$Telefone,
-            Password: request.$Password
+            companyName: request.CompanyName,
+            Images: request.Images,
+            Icon: request.Icon,
+            Description: request.Description,
+            LegalNature: request.LegalNature,
+            LocationX: request.LocationX,
+            LocationY: request.LocationY,
+            CNPJ: request.CNPJ,
+            Address: request.Address,
+            Telefone: request.Telefone,
+            Password: request.Password
         }, {
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": request.$token
+                "Authorization": request.token
             },
             validateStatus: () => true
         })
-        console.log(request.$Images);
+        console.log(request.Images);
         if (response.status >= 300 || response.status < 200) {
             if (response.status == 400) {
                 let errors = response.data;
@@ -36,10 +36,10 @@ export default class PatchCompanyHandler extends Handler<PatchCompanyRequest>{
                 errors.forEach((error: any) => {
                     messagesErrors.push(error.Message);
                 });
-                request.$ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
+                request.ApiBadResponse = new ApiBadResponse(response.status, messagesErrors);
             }
             else {
-                request.$ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
+                request.ApiBadResponse = new ApiBadResponse(response.status, [JSON.stringify(response.data)]);
             }
             return;
         }
